@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Raze Display", "Arial Black", system-ui, sans-serif;
+  --font-body: "Raze Body", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #08070A;
+  color: #F3E9E7;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus visibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #FF4530;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Ember grain texture overlay */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Scorched divider */
+.scorch-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(220,38,38,0.5) 20%, rgba(220,38,38,0.5) 80%, transparent);
+}
+
+.ember-glow {
+  box-shadow: 0 0 60px -12px rgba(220, 38, 38, 0.45);
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0.85; }
+  50% { opacity: 1; }
+  72% { opacity: 0.92; }
+}
+
+.flicker {
+  animation: flicker 4.5s ease-in-out infinite;
+}
+
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  10% { opacity: 0.7; }
+  100% { transform: translateY(-140px) scale(0.3); opacity: 0; }
+}
+
+.ember-particle {
+  position: absolute;
+  border-radius: 999px;
+  background: radial-gradient(circle, #FF6B4A 0%, #DC2626 60%, transparent 100%);
+  animation: rise linear infinite;
+}
